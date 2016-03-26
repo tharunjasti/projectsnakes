@@ -1,0 +1,374 @@
+  
+<html>
+    <head>
+        <title>Registration</title>
+        <script>
+           
+            var xmlHttp  
+            var xmlHttp
+            function showState(str){ 
+                if (typeof XMLHttpRequest != "undefined"){
+                    xmlHttp= new XMLHttpRequest();
+                }
+                else if (window.ActiveXObject){
+                    xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                if (xmlHttp==null){
+                    alert ("Browser does not support XMLHTTP Request")
+                    return
+                } 
+                var url="value.jsp";
+                url += "?count=" +str;
+                xmlHttp.onreadystatechange = stateChange;
+                xmlHttp.open("GET", url, true);
+                xmlHttp.send(null);
+            }
+            function stateChange(){   
+                if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
+                    document.getElementById("loname1").innerHTML=xmlHttp.responseText;  
+                }   
+ }
+            function validateform()
+            {
+             
+                if( document.forms ["myform"]["loname"].value=='')
+                {
+                    alert( "Please provide valid username!" );
+    
+                    return false;
+                }
+	
+                if( !document.forms ["myform"]["loname"].value.match(/^[A-Za-z][A-Za-z0-9]+$/))
+                {
+                    alert( "User name must not start with a integer and no special characters" );
+    
+                    return false;
+                }
+                var username_len = document.forms["myform"]["loname"].value.length; 
+                if(fname_len >= 10 || fname_len < 5)
+                {
+                    alert("User name length should be between 5 and 10")
+                }
+                if( document.forms ["myform"]["fname"].value=='')
+                {
+                    alert( "Please provide valid first name!" );
+    
+                    return false;
+                }
+                if( !document.forms ["myform"]["fname"].value.match(/^[A-Za-z]+$/))
+                {
+                    alert( "First name must contain only alphabets" );
+    
+                    return false;
+                }
+                var fname_len = document.forms["myform"]["fname"].value.length; 
+                if(fname_len >= 20 || fname_len < 5)
+                {
+                    alert("First name length should be between 5 and 20")
+                }
+
+
+                if( document.forms ["myform"]["lname"].value=='')
+                {
+                    alert( "Please provide valid last name!" );
+    
+                    return false;
+                }
+                 if( !document.forms ["myform"]["lname"].value.match(/^[A-Za-z]+$/))
+                {
+                    alert( "Last name must contain only alphabets" );
+    
+                    return false;
+                }
+                var lname_len = document.forms["myform"]["lname"].value.length; 
+                if(lname_len >= 20 || lname_len < 5)
+                {
+                    alert("Last name length should be between 5 and 20")
+                    return false;
+                }
+                var d=document.forms["myform"]["D"].value;
+                var m=document.forms["myform"]["M"].value;
+                var y=document.forms["myform"]["Y"].value;
+                var currentTime = new Date().getFullYear();
+                if((y%4==0 &&(d=="30"||d=="31")&&m=="02")||y>currentTime)
+                    {
+                        alert("Invalid date");
+                        return false;
+                    }
+                 if((y%4!=0 &&(d=="29"||d=="30"||d=="31")&&m=="02")||y>currentTime)
+                    {
+                        alert("Invalid date");
+                        return false;
+                    }
+
+
+                var radios = document.getElementsByName("sex");
+                var formValid = false;
+                var i = 0;
+                while (!formValid && i < radios.length) 
+                {
+                    if(radios[i].checked) 
+                        formValid = true;
+                    i++;        
+                }
+                if (!formValid) 
+                {
+                    alert("Please select the gender");
+                    return false;
+                }
+
+               
+
+                if( document.forms ["myform"]["email"].value=='')
+                {
+                    alert( "Email field is left blank" );
+    
+                    return false;
+                }
+                if( !document.forms ["myform"]["email"].value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/))
+                {
+                    alert( "invalid email" );
+    
+                    return false;
+                }
+
+                var passid_len = document.forms["myform"]["p1"].value.length;  
+                var flag=0;
+                if (passid_len == 0)  
+                {  
+                    alert("Password should not be empty ");  
+         
+                    return false;  
+                }  
+                if(passid_len >= 10 || passid_len < 5)
+                {
+                    alert("password length should be between 5 and 10");
+                    return false;
+                }
+                if (document.forms["myform"]["p2"].value.length == 0)  
+                {  
+                    alert("Renter the password ");  
+                    flag=1;
+                    return false;  
+                }      
+                if(document.forms["myform"]["p1"].value!=document.forms["myform"]["p2"].value&&flag==0)
+                {
+                    alert("passwords do not match");
+                    return false;
+                }
+  
+
+                if( document.forms ["myform"]["address"].value=='')
+                {
+                    alert( "Please enter the address" );
+    
+                    return false;
+                }
+
+                if( !document.forms ["myform"]["address"].value.match(/^[A-za-z0-9\.\,\/\-\:\s]+$/))
+                {
+                    alert( "The address contains invalid characters. Enter again!" );
+    
+                    return false;
+                }
+
+                if( document.forms ["myform"]["secret2"].value=='')
+                {
+                    alert( "Please provide answer to the secret question" );
+    
+                    return false;
+                }
+
+                if( document.forms ["myform"]["email1"].value=='')
+                {
+                    alert( "Alternate Email field is left blank" );
+    
+                    return false;
+                }
+                if( !document.forms ["myform"]["email1"].value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/))
+                {
+                    alert( "invalid Alternate email" );
+    
+                    return false;
+                }
+                return true;
+            }
+        </script>
+        <style>
+            th a:hover{color:red;}
+            label{
+                display:inline-block;
+                width:200px;
+                margin-right:30px;
+                text-align:left;
+            }
+            th a{
+                text-decoration: none;
+            }
+
+            input{
+
+            }
+
+            form{
+                border:none;
+                width:600px;
+                margin:0px auto;
+            }
+
+            body{background-image:url("Photos/background11.jpg");}
+            img.sr{position:absolute;right:0;top:600;}
+        </style>
+    </head>
+    <body>
+        <br><br><br>
+        <table align="center" width="100%">
+            <tr>
+                <th <center><a href="instructions_of_game.html"><font color="white" size="5">Instructions</font></a></center>
+            <th <center><a href="registration.jsp"><font color="white" size="5">Registration</font></a></center>
+            <th <center><a href="newgamejsp.jsp"><font color="white" size="5">New Game</font></center></a>
+        <th <center><a href="joingamejsp.jsp"><font color="white" size="5">Join Game</font></center></a>
+    <th <center><a href="contactus.jsp"><font color="white" size="5">Contact Us</font></center></a>
+</table>
+<form name="myform" onsubmit="return validateform()" method="POST" action="registrationservlet">
+    <legend>Register</legend>
+    <h2><center><font color="white">Welcome to Registration</font></center></h2><br><br>
+
+    <label><font color="white" size ="4">First Name </label><input type=text name=fname > 
+
+    <label>Last Name </label><input type=text name=lname >
+
+    <label>Login Name </label><input id="loname" type="text" name="loname" onkeyup="showState(this.value)">
+ <div id='loname1' style="position:absolute;top:250px;right:130px; color:red;"> 
+     
+ </div> 
+    <label>Date of Birth</label>
+
+    <b>D</b> : 
+    <select name="D">
+        <option value="01">1</option>
+        <option value="02">2</option>
+        <option value="03">3</option>
+        <option value="04">4</option>
+        <option value="05">5</option>
+        <option value="06">6</option>
+        <option value="07">7</option>
+        <option value="08">8</option>
+        <option value="09">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+    </select>
+
+    <b>M</b> :
+    <select name="M">
+
+        <option value="01">January</option>
+        <option value="02">Febuary</option>
+        <option value="03">March</option>
+        <option value="04">April</option>
+        <option value="05">May</option>
+        <option value="06">June</option>
+        <option value="07">July</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+    </select>
+
+
+    <b>Y</b> :
+    <select name="Y">
+        <option value="2029">2029</option>
+        <option value="2028">2028</option>
+        <option value="2027">2027</option>
+        <option value="2026">2026</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+        <option value="2020">2020</option>
+        <option value="2019">2019</option>
+        <option value="2018">2018</option>
+        <option value="2017">2017</option>
+        <option value="2016">2016</option>
+        <option value="2015">2015</option>
+        <option value="2014">2014</option>
+        <option value="2013">2013</option>
+        <option value="2012">2012</option>
+        <option value="2011">2011</option>
+        <option value="2010">2010</option>
+        <option value="2009">2009</option>
+        <option value="2008">2008</option>
+        <option value="2007">2007</option>
+        <option value="2006">2006</option>
+        <option value="2005">2005</option>
+        <option value="2004">2004</option>
+        <option value="2003">2003</option>
+        <option value="2002">2002</option>
+        <option value="2001">2001</option>
+        <option value="2000">2000</option>
+        <option value="1999">1999</option>
+        <option value="1998">1998</option>
+        <option value="1997">1997</option>
+        <option value="1996">1996</option>
+        <option value="1995">1995</option>
+        <option value="1994">1994</option>
+        <option value="1993">1993</option>
+        <option value="1992">1992</option>
+        <option value="1991">1991</option>
+        <option value="1990">1990</option>
+    </select>
+    <br>
+
+    <label>Sex</label>Male<input type=radio name="sex" value="male"> &nbsp;
+
+    Female<input type=radio name="sex" value="female"><br>
+
+    <label>Email Id</label><input type=text name=email >
+
+    <label>Enter password</label><input type=password name=p1 >
+
+    <label>Renter your password</label><input type=password name=p2 >
+
+    <label>Address</label><textarea name="address" rows="6" cols="16"></textarea>
+
+    <label>Enter secret question</label>
+    <select name="secret1">
+        <option value="q1">What's your childhood pet?</option>
+        <option value="q2">What's your first mobile connection?</option>
+        <option value="q3">What's your Mother maiden name?</option>
+        <option value="q4">What's your favourite Teacher?</option>
+    </select>
+    <label>Enter your answer </label><input type=text name=secret2 >
+
+    <label>Alternate email</label><input type=text name=email1 >
+
+    <br><br><br>
+    <center><input type=submit value="Submit" >&nbsp<input type=reset value="Reset">
+        <a href="main.jsp">
+            <img class="sr" src="Photos\home1.jpg" alt="Home" title="Home" title="Home" width="100" height="50" align="right"></a>
+       
+        
+    </body>
